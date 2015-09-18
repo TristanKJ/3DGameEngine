@@ -20,12 +20,10 @@ public class Vector2f {
 		return x * r.getX() + y * r.getY();
 	}
 	
-	public Vector2f normalize()
+	public Vector2f normalized()
 	{
 		float length = length();
-		x /= length;
-		y /= length;
-		return this;
+		return new Vector2f(x / length, y / length);
 	}
 	
 	public Vector2f rotate(float angle)
@@ -77,7 +75,10 @@ public class Vector2f {
 		return new Vector2f(x / r, y / r);
 	}
 	
-	
+	public Vector2f abs()
+	{
+		return new Vector2f(Math.abs(x), Math.abs(y));
+	}
 
 	public float getX() {
 		return x;

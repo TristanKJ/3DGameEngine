@@ -15,8 +15,7 @@ public class Game
 	
 	public Game()
 	{
-		mesh = new Mesh();//ResourceLoader.loadMesh("box.obj");
-		material = new Material(ResourceLoader.loadTexture("test.png"), new Vector3f(1,1,1), 1, 8);
+		material = new Material(new Texture("test.png"), new Vector3f(1,1,1), 1, 8);
 		shader = PhongShader.getInstance();
 		camera = new Camera();
 		transform = new Transform();
@@ -52,31 +51,21 @@ public class Game
 		int indices[] = { 0, 1, 2,
 					      2, 1, 3};
 		
-		mesh.addVertices(vertices, indices, true);
+		mesh = new Mesh(vertices, indices, true);
 		
 		Transform.setProjection(70f, Window.getWidth(), Window.getHeight(), 0.1f, 1000);
 		Transform.setCamera(camera);
 		
 		PhongShader.setAmbientLight(new Vector3f(0.1f,0.1f,0.1f));
-		//PhongShader.setDirectionalLight(new DirectionalLight(new BaseLight(new Vector3f(1,1,1), 0.8f), new Vector3f(1,1,1)));
+		PhongShader.setDirectionalLight(new DirectionalLight(new BaseLight(new Vector3f(1,1,1), 0.8f), new Vector3f(1,1,1)));
 	
-		//PhongShader.setPointLight(new PointLight[]{pLight1, pLight2});
+		PhongShader.setPointLight(new PointLight[]{pLight1, pLight2});
 		PhongShader.setSpotLights(new SpotLight[]{sLight1});
 	}
 	
 	public void input()
 	{
 		camera.input();
-		
-//		if(Input.getKeyDown(Input.KEY_UP))
-//			System.out.println("We've just pressed up!");
-//		if(Input.getKeyUp(Input.KEY_UP))
-//			System.out.println("We've just released up!");sd
-//		
-//		if(Input.getMouseDown(1))
-//			System.out.println("We've just right clicked at " + Input.getMousePosition().toString());
-//		if(Input.getMouseUp(1))
-//			System.out.println("We've just released right mouse button!");
 	}
 	
 	float temp = 0.0f;
